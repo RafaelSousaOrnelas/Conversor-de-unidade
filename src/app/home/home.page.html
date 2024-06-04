@@ -1,20 +1,136 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Conversor de Unidade
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-item>
+    <ion-label>Unidade</ion-label>
+    <ion-select [(ngModel)]="tipoSelecionado">
+      <ion-select-option *ngFor="let tipo of tiposUnidades" [value]="tipo"> {{ tipo }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!--Converte comprimentos-->
+  <ion-item *ngIf="tipoSelecionado == 'Comprimento'">
+
+    <ion-label>Unidade a se convertida</ion-label>
+    <ion-select [(ngModel)]="daUnidade"> <!---->
+      <ion-select-option *ngFor="let unidade of unidades[0].Comprimento" [value]="unidade"> {{ unidade }} </ion-select-option> <!----> <!---->
+    </ion-select>
+
+  </ion-item>
+
+  <ion-item *ngIf="tipoSelecionado == 'Comprimento'">
+
+    <ion-label >Para</ion-label>
+    <ion-select [(ngModel)]="paraUnidade"> <!---->
+      <ion-select-option *ngFor="let unidade of unidades[0].Comprimento" [value]="unidade"> {{ unidade }} </ion-select-option> <!----> <!---->
+    </ion-select>
+    
+  </ion-item>
+  <!--Até aqui-->
+
+  <!--Converte Velocidade-->
+  <ion-item *ngIf="tipoSelecionado == 'Velocidade'">
+
+    <ion-label>Unidade a se convertida</ion-label>
+    <ion-select [(ngModel)]="daUnidadeV"> <!---->
+      <ion-select-option *ngFor="let unidade of unidades[1].Velocidade" [value]="unidade"> {{ unidade }} </ion-select-option> <!----> <!---->
+    </ion-select>
+
+  </ion-item>
+
+  <ion-item *ngIf="tipoSelecionado == 'Velocidade'">
+
+    <ion-label >Para</ion-label>
+    <ion-select [(ngModel)]="paraUnidadeV"> <!---->
+      <ion-select-option *ngFor="let unidade of unidades[1].Velocidade" [value]="unidade"> {{ unidade }} </ion-select-option> <!----> <!---->
+    </ion-select>
+    
+  </ion-item>
+  <!--Até aqui-->
+
+  <!--Converte Volume-->
+  <ion-item *ngIf="tipoSelecionado == 'Volume'">
+
+    <ion-label>Unidade a se convertida</ion-label>
+    <ion-select [(ngModel)]="daUnidadeVol"> <!---->
+      <ion-select-option *ngFor="let unidade of unidades[2].Volume" [value]="unidade"> {{ unidade }} </ion-select-option> <!----> <!---->
+    </ion-select>
+
+  </ion-item>
+
+  <ion-item *ngIf="tipoSelecionado == 'Volume'">
+
+    <ion-label >Para</ion-label>
+    <ion-select [(ngModel)]="paraUnidadeVol"> <!---->
+      <ion-select-option *ngFor="let unidade of unidades[2].Volume" [value]="unidade"> {{ unidade }} </ion-select-option> <!----> <!---->
+    </ion-select>
+    
+  </ion-item>
+  <!--Até aqui-->
+
+  <!--Converte Area-->
+  <ion-item *ngIf="tipoSelecionado == 'Area'">
+
+    <ion-label>Unidade a se convertida</ion-label>
+    <ion-select [(ngModel)]="daUnidadeA"> <!---->
+      <ion-select-option *ngFor="let unidade of unidades[3].Area" [value]="unidade"> {{ unidade }} </ion-select-option> <!----> <!---->
+    </ion-select>
+
+  </ion-item>
+
+  <ion-item *ngIf="tipoSelecionado == 'Area'">
+
+    <ion-label >Para</ion-label>
+    <ion-select [(ngModel)]="paraUnidadeA"> <!---->
+      <ion-select-option *ngFor="let unidade of unidades[3].Area" [value]="unidade"> {{ unidade }} </ion-select-option> <!----> <!---->
+    </ion-select>
+    
+  </ion-item>
+  <!--Até aqui-->
+
+  <!--Converte Massa-->
+  <ion-item *ngIf="tipoSelecionado == 'Massa'">
+
+    <ion-label>Unidade a se convertida</ion-label>
+    <ion-select [(ngModel)]="daUnidadeM"> <!---->
+      <ion-select-option *ngFor="let unidade of unidades[4].Massa" [value]="unidade"> {{ unidade }} </ion-select-option> <!----> <!---->
+    </ion-select>
+
+  </ion-item>
+
+  <ion-item *ngIf="tipoSelecionado == 'Massa'">
+
+    <ion-label >Para</ion-label>
+    <ion-select [(ngModel)]="paraUnidadeM"> <!---->
+      <ion-select-option *ngFor="let unidade of unidades[4].Massa" [value]="unidade"> {{ unidade }} </ion-select-option> <!----> <!---->
+    </ion-select>
+    
+  </ion-item>
+  <!--Até aqui-->
+
+  <ion-item>
+    <ion-input [(ngModel)]="inputValue" label="Valor" labelPlacement="stacked" [clearOnEdit]="true" placeholder="Enter text, leave the input, come back and type to clear" type="number"></ion-input> <!---->
+  </ion-item>
+
+  <ion-button (click)="converter()" expand="block"> Converter </ion-button> <!---->
+
+  <ion-item *ngIf="resultado !== null"> <!---->
+    <ion-label>Resultado: </ion-label>
+    <ion-input [value]="resultado" readonly></ion-input> <!---->
+
+  </ion-item>
+
+
 </ion-content>
